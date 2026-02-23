@@ -150,7 +150,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const btn = document.querySelector('.epay222');
-    const url = 'https://script.google.com/macros/s/AKfycbzG_yMc150pXkw3spJCHwIBptCxYbBrRi23oWb-yB23Sv4TTW0q2bB4lfd83Qtwje8Hhw/exec'; 
+    const url = 'https://script.google.com/macros/s/AKfycbw1ufz-TDQwkaTB8CCV83D-qBKMVajT70d7Dx0QzbN6JJzD63T5Pu2pGtY_jVT7qD7fMw/exec'; 
 
     btn.addEventListener('click', (e) => {
         e.preventDefault(); 
@@ -159,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
             username: document.getElementById('username').value,
             phone: document.getElementById('phone').value,
             email: document.getElementById('email').value,
-            email: document.getElementById('price').value,
-            email: document.getElementById('step').value
+            price: document.getElementById('price').value,
+            step: document.getElementById('step').value
         };
 
         // Отправляем без await — браузер не ждет ответа
@@ -1309,6 +1309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </body></html>
+
 
 
 
