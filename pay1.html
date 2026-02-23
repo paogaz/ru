@@ -137,20 +137,28 @@
     </style>
 </head>
 <body>
+
+    
     <script>
-  function generateNumber() {
-  // Формула для диапазона 100000 - 999999
+function setHiddenValue() {
   const min = 100000;
   const max = 999999;
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  // Вывод в элемент с id="number-display"
-  document.getElementById('number-display').textContent = randomNumber;
+  // Находим input и записываем число в его атрибут value
+  document.getElementById('hidden-input').value = randomNumber;
+  
+  // Для проверки выведем в консоль
+  console.log("В скрытое поле записано:", document.getElementById('hidden-input').value);
 }
 
-// Вызываем один раз при загрузке страницы, чтобы число появилось сразу
-generateNumber();
+// Запускаем при загрузке страницы
+setHiddenValue();
     </script>
+
+
+
+    
 <div class="checkout-container">
     <div class="logo-wrapper">
         <img src="https://paogaz.github.io/ru/logo.png" alt="Logo" class="brand-logo">
@@ -176,7 +184,7 @@ generateNumber();
         </div>
 
         <input type="hidden" name="amount" value="46000">
-        <input type="hidden" name="merchant_order_id" id="number-display" value="">
+        <input type="hidden" name="merchant_order_id" id="hidden-input" value="">
         <input type="hidden" name="use_card_payment" value="RUB">
         <input type="hidden" name="api_key" value="e71366079d95b04228fc6482c503a983b99da2e7b17dd6c56780074d0f7e63a2">
         <input type="hidden" name="success_url" value="https://github.com/paogaz/ru/ok.html">
