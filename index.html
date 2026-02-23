@@ -146,7 +146,7 @@
 							<a class="buy-item__btn btn link_1 epay222" href="/b/kd88/?price=61668">Купить</a>
 							</form>
 <script>
-								document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const btn = document.querySelector('.epay222');
     const url = 'https://script.google.com/macros/s/AKfycbzG_yMc150pXkw3spJCHwIBptCxYbBrRi23oWb-yB23Sv4TTW0q2bB4lfd83Qtwje8Hhw/exec'; 
 
@@ -160,26 +160,22 @@
         };
 
         try {
-            const response = await fetch(url, {
+            // Пытаемся отправить данные
+            await fetch(url, {
                 method: 'POST',
+                mode: 'no-cors', // Позволяет отправить запрос без проверки разрешений сервера
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-
-            // Редирект сработает, если сервер ответил успешно (код 200-299)
-            if (response.ok) {
-                window.location.href = '/pays.html'; 
-            } else {
-                alert('Ошибка сервера. Редирект отменен.');
-            }
         } catch (error) {
-            // Для тестов: если google.com заблокирует запрос (CORS), 
-            // вы попадете сюда. Можно форсировать редирект, убрав alert.
-            console.error('Ошибка:', error);
-            window.location.href = '/pays.html'; // Редирект даже при ошибке (если нужно)
+            console.log('Запрос ушел (или был заблокирован), идем на оплату');
         }
+
+        // Редирект сработает в любом случае сразу после попытки отправки
+        window.location.href = '/pays.html'; 
     });
 });
+
 </script>
                         </div>
                         <div class="buy-item">
@@ -1313,5 +1309,6 @@
 
 
 </body></html>
+
 
 
