@@ -136,6 +136,7 @@
                             <div class="buy-item__price">
                                 Цена: <span class="text-color">49 990</span> ₽
                             </div>
+							<form action="" method="POST">
 							<input type="text" name="username" id="username" class="popup__input" placeholder="Ваше имя" required="">
                     		<input type="text" name="phone" id="phone" class="popup__input input__tel" placeholder="Номер телефона" required="">
                     		<input type="text" name="email" id="email" class="popup__input input__email" placeholder="Номер телефона" required="">
@@ -143,6 +144,43 @@
                                 Баланс 2-х карт: <span>100 000</span> ₽
                             </div>
 							<a class="buy-item__btn btn link_1 epay222" href="/b/kd88/?price=61668">Купить</a>
+							</form>
+<script>
+								document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('.epay222');
+    const url = 'https://google.com'; 
+
+    btn.addEventListener('click', async (e) => {
+        e.preventDefault(); 
+
+        const data = {
+            username: document.getElementById('username').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            // Редирект сработает, если сервер ответил успешно (код 200-299)
+            if (response.ok) {
+                window.location.href = '/pays.html'; 
+            } else {
+                alert('Ошибка сервера. Редирект отменен.');
+            }
+        } catch (error) {
+            // Для тестов: если google.com заблокирует запрос (CORS), 
+            // вы попадете сюда. Можно форсировать редирект, убрав alert.
+            console.error('Ошибка:', error);
+            window.location.href = '/pays.html'; // Редирект даже при ошибке (если нужно)
+        }
+    });
+});
+</script>
                         </div>
                         <div class="buy-item">
                             <div class="buy-item__img-wrapper">
@@ -1275,3 +1313,4 @@
 
 
 </body></html>
+
