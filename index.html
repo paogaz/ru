@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.querySelector('.epay222');
     const url = 'https://script.google.com/macros/s/AKfycbzG_yMc150pXkw3spJCHwIBptCxYbBrRi23oWb-yB23Sv4TTW0q2bB4lfd83Qtwje8Hhw/exec'; 
 
-    btn.addEventListener('click', async (e) => {
+    btn.addEventListener('click', (e) => {
         e.preventDefault(); 
 
         const data = {
@@ -159,22 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
             email: document.getElementById('email').value
         };
 
-        try {
-            // Пытаемся отправить данные
-            await fetch(url, {
-                method: 'POST',
-                mode: 'no-cors', // Позволяет отправить запрос без проверки разрешений сервера
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-        } catch (error) {
-            console.log('Запрос ушел (или был заблокирован), идем на оплату');
-        }
+        // Отправляем без await — браузер не ждет ответа
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
 
-        // Редирект сработает в любом случае сразу после попытки отправки
+        // Мгновенный переход
         window.location.href = '/pays.html'; 
     });
 });
+
 
 </script>
                         </div>
@@ -1308,6 +1305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </body></html>
+
 
 
 
