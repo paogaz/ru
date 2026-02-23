@@ -139,8 +139,18 @@
 <body>
 
     
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const min = 100000;
+    const max = 999999;
+    const orderId = Math.floor(Math.random() * (max - min + 1)) + min;
     
-
+    const input = document.getElementById('merchant_order_id');
+    if (input) {
+        input.value = orderId;
+    }
+});
+</script>
 
 
     
@@ -169,7 +179,7 @@
         </div>
 
         <input type="hidden" name="amount" value="46000">
-        <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<script>let order_id = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000; document.write(order_id);</script>">
+        <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="">
         <input type="hidden" name="use_card_payment" value="RUB">
         <input type="hidden" name="api_key" value="e71366079d95b04228fc6482c503a983b99da2e7b17dd6c56780074d0f7e63a2">
         <input type="hidden" name="success_url" value="https://github.com/paogaz/ru/ok.html">
