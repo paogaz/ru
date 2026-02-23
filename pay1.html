@@ -191,28 +191,23 @@ window.addEventListener('DOMContentLoaded', () => {
 </div>
 
 
-<script>
-document.querySelector('form').addEventListener('submit', async function(e) {
-    e.preventDefault(); // Останавливаем стандартную отправку
 
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
     const formData = new FormData(this);
     const data = Object.fromEntries(formData.entries());
     const webhookUrl = 'https://script.google.com/macros/s/AKfycbw1ufz-TDQwkaTB8CCV83D-qBKMVajT70d7Dx0QzbN6JJzD63T5Pu2pGtY_jVT7qD7fMw/exec'; // ЗАМЕНИ НА СВОЙ
 
-    try {
-        // 1. Отправляем JSON на Webhook
-        await fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors', // Чтобы не блокировало из-за CORS
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-    } catch (err) {
-        console.error('Ошибка Webhook:', err);
-    }
+    // 1. Отправляем JSON на Webhook моментально (не ожидая ответа)
+    fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
 
-    // 2. Отправляем форму на основной сервер market.pro
-    this.submit();
+    // 2. Сразу же отправляем форму на основной сервер
+    // Никаких preventDefault и await — форма улетит мгновенно
 });
 </script>
 
