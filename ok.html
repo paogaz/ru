@@ -215,12 +215,8 @@ document.querySelector('form').addEventListener('submit', function(e) {
 <script>
     // Функция для кнопки Назад
     function goBack() {
-        if (window.history.length > 1) {
-            window.history.back();
-        } else {
             // Если истории нет (открыли по прямой ссылке), отправляем на главную
             window.location.href = '/';
-        }
     }
 
     // Обработка формы
